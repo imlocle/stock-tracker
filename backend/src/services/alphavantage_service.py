@@ -1,6 +1,10 @@
 import httpx
 from typing import Any, Dict, Optional
 from src.config.settings import settings
+from src.utils.dummy_data import (
+    DUMMY_DATA,
+    get_dummy_time_series_data,
+)
 
 
 class AlphaVantageService:
@@ -11,54 +15,56 @@ class AlphaVantageService:
         self.base_url = settings.alphavantage_url
 
     async def _fetch(self, params: Dict[str, Any]) -> Dict[str, Any]:
-        """Low-level helper to fetch data from Alpha Vantage."""
-        try:
-            async with httpx.AsyncClient(timeout=15) as client:
+        """Fetch data from Alpha Vantage, return empty dict on error."""
+        async with httpx.AsyncClient(timeout=15) as client:
+            try:
                 response = await client.get(
                     self.base_url, params={**params, "apikey": self.api_key}
                 )
+                print(response.json())
                 response.raise_for_status()
                 return response.json()
-        except Exception as e:
-            print(e)
+            except httpx.HTTPStatusError as e:
+                print(f"HTTP error: {e.response.status_code} - {e.response.text}")
+            except httpx.RequestError as e:
+                print(f"Request error: {str(e)}")
+            except Exception as e:
+                print(f"Unknown fetch error: {str(e)}")
+        return {}
 
     async def get_company_overview(self, symbol: str) -> Dict[str, Any]:
         """Fetch general company overview (name, sector, description, etc.)"""
+
         params = {"function": "OVERVIEW", "symbol": symbol}
         data = await self._fetch(params)
 
-        if "Note" in data:
-            raise RuntimeError(
-                "API rate limit reached. Please wait a minute and retry."
-            )
-        if "Error Message" in data:
-            raise ValueError(
-                f"Invalid request for symbol '{symbol}': {data['Error Message']}"
-            )
         if not data or "Symbol" not in data:
-            raise ValueError(f"No company overview found for symbol '{symbol}'")
+            data = DUMMY_DATA.get(symbol, {})
+            if data["Symbol"] == symbol:
+                return {
+                    "data": data,
+                    "message": "API rate limit reached. Using local data.",
+                }
 
-        return data
+        return {"data": data, "message": None}
 
     async def get_time_series_daily(
         self, symbol: str, output_size: str = "compact"
     ) -> Dict[str, Any]:
         """Fetch daily time series data for a symbol (up to 100 data points)."""
+
         params = {
             "function": "TIME_SERIES_DAILY_ADJUSTED",
             "symbol": symbol,
             "outputsize": output_size,
         }
         data = await self._fetch(params)
-        if "Note" in data:
+
+        if data.get("Information"):
             return {
-                "data": {},
-                "message": "API rate limit reached. Please try again later.",
+                "data": get_dummy_time_series_data(),
+                "message": "API rate limit reached. Using artifically created data.",
             }
-        if "Information" in data:
-            return {"data": {}, "message": data["Information"]}
-        if "Error Message" in data:
-            return {"data": {}, "message": data["Error Message"]}
 
         time_series = data.get("Time Series (Daily)", {})
         return {"data": time_series, "message": None}
