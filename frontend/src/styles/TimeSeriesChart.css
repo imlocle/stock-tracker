@@ -1,0 +1,17 @@
+.time-series-container {
+    background: white;
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: 0px 10px 20px rgba(0,0,0,0.1);
+}
+
+.chart-table-header {
+    padding: 8;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.chart-table-row {
+    padding: 8;
+    border-bottom: 1px solid #eee;
+}

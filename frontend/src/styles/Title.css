@@ -1,0 +1,16 @@
+.title-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: 2.5rem;
+  color: #1e293b; /* Slate 800 */
+  margin-bottom: 1rem;
+}
+
+.title-underline {
+  height: 4px;
+  background-color: #3b82f6; /* Lighter blue */
+  margin: 0 auto;
+}
