@@ -24,7 +24,9 @@
       ],
       "@components/*": [
         "components/*"
-      ]
+      ],
+      "@styles/*":["styles/*"],
+      "@models/*":["models/*"]
     },
     "incremental": true,
     "plugins": [
