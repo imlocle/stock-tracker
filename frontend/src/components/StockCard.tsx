@@ -1,6 +1,6 @@
 "use client";
 
-import { STOCKS } from "@lib/stocks";
+import { STOCKS } from "@utils/stocks";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import "@styles/StockCard.css"

@@ -1,11 +1,10 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getTimeSeriesDaily, ITimeSeriesDaily } from "@lib/api";
+import { getTimeSeriesDaily, ITimeSeriesDaily } from "@utils/api";
 import { IPrice } from "@models/interfaces";
 import { motion } from "framer-motion";
 import "@styles/TimeSeriesChart.css"
-import LoadingCircle from "./LoadingCircle";
 
 export default function TimeSeriesChart({ symbol }: { symbol: string }) {
   const [tableHeaders, setTableHeaders] = useState<string[]>([])

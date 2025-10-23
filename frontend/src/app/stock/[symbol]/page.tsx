@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 
-import { getCompanyOverview, ICompanyOverview, ICompanyOverviewResponse } from "@lib/api";
+import { getCompanyOverview, ICompanyOverview, ICompanyOverviewResponse } from "@utils/api";
 import CompanyOverviewCard from "@components/CompanyOverviewCard";
 import TimeSeriesChart from "@components/TimeSeriesChart";
 import LoadingCircle from "@components/LoadingCircle";
+import Title from "@components/Title";
 
 export default function StockDetailsPage() {
   const { symbol } = useParams() as { symbol: string };
@@ -67,6 +68,7 @@ export default function StockDetailsPage() {
       >
         ← Back to Home
       </button>
+      <Title title={company.Name} />
       <CompanyOverviewCard company={company} />
       <TimeSeriesChart symbol={symbol} />
     </div>

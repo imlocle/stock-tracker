@@ -1,7 +1,6 @@
 "use client";
 
-import { ICompanyOverview } from "@lib/api";
-import Title from "./Title";
+import { ICompanyOverview } from "@utils/api";
 import "@styles/CompanyOverviewCard.css"
 
 interface Props {
@@ -13,7 +12,6 @@ export default function CompanyOverviewCard({ company }: Props) {
 
   return (
     <div className="company-overview-container">
-    <Title title={company.Name}/>
       <div className="subtitle">
         <img src={logoUrl} alt={company.Symbol} />
         <h1>{company.Symbol}</h1>
