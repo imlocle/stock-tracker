@@ -10,8 +10,8 @@ async def company_overview(symbol: str = Query(..., description="Stock ticker"))
     Returns the company overview for a given stock symbol.
     """
     try:
-        data = await alpha_service.get_company_overview(symbol)
-        return data
+        response = await alpha_service.get_company_overview(symbol)
+        return response
     except ValueError as ve:
         raise HTTPException(status_code=404, detail=str(ve))
     except RuntimeError as re:

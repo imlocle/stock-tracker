@@ -69,13 +69,5 @@ class AlphaVantageService:
         time_series = data.get("Time Series (Daily)", {})
         return {"data": time_series, "message": None}
 
-    async def get_income_statement(self, symbol: str) -> Dict[str, Any]:
-        """Fetch annual and quarterly income statements."""
-        params = {"function": "INCOME_STATEMENT", "symbol": symbol}
-        data = await self._fetch(params)
-        if not data or "annualReports" not in data:
-            raise ValueError(f"No income statement data found for symbol '{symbol}'")
-        return data
-
 
 alpha_service = AlphaVantageService()
