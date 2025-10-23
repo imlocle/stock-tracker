@@ -11,8 +11,8 @@ class AlphaVantageService:
     """Handles all interactions with the Alpha Vantage API."""
 
     def __init__(self, api_key: Optional[str] = None):
-        self.api_key = api_key or settings.alphavantage_api_key
-        self.base_url = settings.alphavantage_url
+        self.api_key = api_key or settings.ALPHAVANTAGE_API_KEY
+        self.base_url = settings.ALPHAVANTAGE_URL
 
     async def _fetch(self, params: Dict[str, Any]) -> Dict[str, Any]:
         """Fetch data from Alpha Vantage, return empty dict on error."""
