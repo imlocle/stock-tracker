@@ -54,7 +54,7 @@ class AlphaVantageService:
         """Fetch daily time series data for a symbol (up to 100 data points)."""
 
         params = {
-            "function": "TIME_SERIES_DAILY_ADJUSTED",
+            "function": "TIME_SERIES_DAILY",
             "symbol": symbol,
             "outputsize": output_size,
         }
