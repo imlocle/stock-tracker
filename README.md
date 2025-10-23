@@ -34,7 +34,7 @@ It features a **FastAPI backend** and a **Next.js (React) frontend**, designed f
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/your-username/stock-tracker.git
+git clone https://github.com/imlocle/stock-tracker.git
 cd stock-tracker/
 ```
 
