@@ -61,7 +61,7 @@ export default function TimeSeriesChart({ symbol }: { symbol: string }) {
 
   return (
     <div className="time-series-container">
-      <h2>Recent Price Activity</h2>
+      <h2>Historical Stock Prices:</h2>
       
       {timeSeriesMessage && (
         <p style={{ color: "orange", marginBottom: "1rem" }}>{timeSeriesMessage}</p>

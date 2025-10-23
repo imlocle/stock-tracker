@@ -159,7 +159,7 @@ def get_dummy_time_series_data():
     dummy_data = {}
     today = datetime.today()
     price = 100.0
-    for i in range(7):
+    for i in range(30):
         day = (today - timedelta(days=i)).strftime("%Y-%m-%d")
         open_price = round(price + random.uniform(-1, 1), 2)
         close_price = round(open_price + random.uniform(-1, 1), 2)
