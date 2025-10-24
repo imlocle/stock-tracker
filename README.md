@@ -3,6 +3,8 @@
 Stock Tracker is a full-stack web application that provides real-time and historical stock market data using the [Alpha Vantage API](https://www.alphavantage.co/).  
 It features a **FastAPI backend** and a **Next.js (React) frontend**, designed for speed, scalability, and a clean developer experience.
 
+![Stock Tracker Logo](frontend/public/logos/stock-tracker-logo.png)
+
 ---
 
 ## 🚀 Tech Stack
